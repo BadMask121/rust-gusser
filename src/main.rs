@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate rocket;
 
-pub mod routes;
+mod routes;
+mod services;
 
 #[launch]
 fn rocket() -> _ {

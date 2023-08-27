@@ -1,5 +1,4 @@
 use rand::prelude::*;
-use std::io;
 
 fn get_dictionary() -> Vec<&'static str> {
     let words = vec![
@@ -9,7 +8,7 @@ fn get_dictionary() -> Vec<&'static str> {
     return words;
 }
 
-fn guess(word: String) {
+fn guess(word: String) -> String {
     let dicts: Vec<&str> = get_dictionary();
     let rng = rand::thread_rng().gen_range(0..dicts.len());
 
@@ -18,27 +17,18 @@ fn guess(word: String) {
     let word_without_newline = word.trim(); // Trim the newline character
 
     if computer_guess == word_without_newline {
-        println!(
-            "Hurray!! you guessed the word {} correctly",
-            word_without_newline
-        );
+        format!(
+            "Horray! you guezzed the word {} correctly",
+            word_without_newline.to_string()
+        )
     } else {
-        println!(
+        format!(
             "oops! you guessed wrongly\ncomputer guess: {}",
             computer_guess
-        );
+        )
     }
 }
 
-fn main() {
-    let mut input = String::new();
-
-    println!("Enter your guess:\n");
-
-    let user_input = io::stdin().read_line(&mut input);
-
-    match user_input {
-        Ok(_) => guess(input),
-        Err(e) => println!("Error occured {}", e),
-    }
+pub fn run(input: &String) -> String {
+    guess(input.to_string())
 }
