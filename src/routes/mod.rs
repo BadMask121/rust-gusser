@@ -1,5 +1,5 @@
 use rocket::Route;
-pub mod home;
+pub mod app;
 pub fn mount() -> Vec<Route> {
-    routes![home::render]
+    routes![app::render]
 }
